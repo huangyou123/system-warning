@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统警告</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* 防止按钮跑出屏幕产生滚动条 */
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 50px;
+            z-index: 10;
+        }
+        #runaway-btn {
+            position: absolute;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #ff4d4f;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.1s ease; /* 让移动看起来更平滑 */
+        }
+        #runaway-btn:hover {
+            background-color: #ff7875;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>你的电脑已经中病毒了，点击下方按钮清除！😏</h1>
+    
+    <button id="runaway-btn">点击清除病毒</button>
+
+    <script>
+        const button = document.getElementById('runaway-btn');
+
+        // 当鼠标移动到按钮上时触发
+        button.addEventListener('mouseover', function() {
+            // 获取浏览器窗口的宽高
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            // 获取按钮自身的宽高
+            const btnWidth = button.offsetWidth;
+            const btnHeight = button.offsetHeight;
+
+            // 计算随机的新坐标，确保按钮不会跑出屏幕边缘
+            const randomX = Math.floor(Math.random() * (windowWidth - btnWidth));
+            const randomY = Math.floor(Math.random() * (windowHeight - btnHeight));
+
+            // 更新按钮的位置
+            button.style.left = randomX + 'px';
+            button.style.top = randomY + 'px';
+        });
+
+        // 以防万一有人手速极快真的点到了
+        button.addEventListener('click', function() {
+            alert('居然被你点到了！不过这是骗你的，电脑好好的呢~ 🎉');
+        });
+    </script>
+
+</body>
+</html>
